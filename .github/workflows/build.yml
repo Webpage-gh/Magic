@@ -14,8 +14,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - name: Install tree
-      run: sudo apt update -y && sudo apt install tree -y
     - name: set up JDK
       uses: actions/setup-java@v4
       with:
@@ -28,5 +26,14 @@ jobs:
     - name: Build with Gradle
       run: ./gradlew build
 
-    - name: Print files
-      run: tree app/build
+    - name: Upload dex
+      uses: actions/upload-artifact@v4
+      with:
+        name: dex
+        path: app/build/generated/dex/release/minifyReleaseWithR8/classes.dex
+
+    - name: Uplpad apk
+      uses: actions/upload-artifact@v4
+      with:
+        name: apk
+        path: app/build/outputs/apk/release/app-release-unsigned.apk
