@@ -17,7 +17,7 @@ jobs:
     - name: Install tree command
       run: |
         command -v tree ||\
-          apt update -y
-          apt install tree -y
+          sudo apt update -y
+          sudo apt install tree -y
     - name: Print File Structure
       run: tree build
