@@ -13,6 +13,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+    - name: Install tree
+      run: sudo apt update -y && sudo apt install tree -y
     - name: set up JDK
       uses: actions/setup-java@v4
       with:
@@ -24,4 +26,6 @@ jobs:
       run: chmod +x gradlew
     - name: Build with Gradle
       run: ./gradlew build
-      
+
+    - name: Print files
+      run: tree build
